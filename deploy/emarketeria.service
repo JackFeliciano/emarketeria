@@ -1,0 +1,23 @@
+[Unit]
+Description=Emarketeria demo
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/srv/emarketeria
+Environment=EMARKETERIA_BASE=/emarketeria/
+ExecStart=/usr/bin/php -S 127.0.0.1:8112 -t showroom showroom/index.php
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/emarketeria
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target
